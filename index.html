@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crockett Web Design</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+<section id="home">  
+	<header>
+    <div class="header-content">
+      <img src="logo.jpg" alt="Logo" class="logo" />
+      <h1>Web Design<br>Made Easy</h1>
+    </div>
+  </header>
+</section>
+
+  <nav class="main-nav">
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#links">My Links</a></li>
+      <li><a href="#about">About Me</a></li>
+      <li><a href="contact">Contact</a></li>
+    </ul>
+  </nav>
+  <main>
+<section id="intro">
+</section>
+<section id="projects">
+    <h2>Ongoing and Completed Projects</h2>
+<div class="listings">
+      <div class="listing">
+        <a href="https://www.youtube.com/watch?v=l-2MGzxuzAM">
+          <img src="tuba-teague.jpg" class="thumbnail" alt="Tuba Teague">
+          Colin Teague Portfolio
+        </a>
+      </div>
+
+      <div class="listing">
+        <a href="https://www.youtube.com/watch?v=hWeb7IO7Btk">
+          <img src="hunt-realty.jpg" class="thumbnail" alt="Hunt Realty">
+          Hunt Realty
+        </a>
+      </div>
+</div>
+  </section>
+	<section id="links">
+	<h2>Links</h2>
+<div class="listings">
+      <div class="listing">
+        <a href="https://www.linkedin.com/in/jonah-crockett-022891363/">
+          <img src="linked.jpg" class="thumbnail" alt="Tuba Teague">
+          Linkedin
+        </a>
+      </div>
+
+      <div class="listing">
+        <a href="https://github.com/jcrockett1214">
+          <img src="github.jpg" class="thumbnail" alt="Hunt Realty">
+          GitHub
+        </a>
+      </div>
+</div>
+  </section>
+
+  <section id="about">
+    <h2>About</h2>
+  </section>
+  </main>
+
+  <footer>
+    <nav class="footer-nav">
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#links">My Links</a></li>
+      <li><a href="#about">About Me</a></li>
+      <li><a href="contact">Contact</a></li>
+    </ul>
+  </nav>
+  </footer>
+
+ 
+  <div id="contact-lightbox" class="lightbox">
+    <div class="contact-box">
+      <span class="lightbox-close" id="closeContact">&times;</span>
+      <form id="contact-form">
+        <h2>Contact Me</h2>
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script>
+    (function() {
+      emailjs.init("scuG3LRYueGd-2TcT");
+    })();
+
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+      contactForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        emailjs.sendForm('service_1bdd9f4', 'template_w3yvt7s', this)
+          .then(function() {
+            alert('✅ Message sent successfully!');
+            closeContactForm();
+          }, function(error) {
+            alert('❌ Failed to send message:\n' + JSON.stringify(error, null, 2));
+          });
+      });
+    }
+
+    const contactLinks = document.querySelectorAll('a[href="contact"]');
+    const contactLightbox = document.getElementById('contact-lightbox');
+    const closeContact = document.getElementById('closeContact');
+
+    contactLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (contactLightbox) {
+          contactLightbox.classList.add('active');
+        }
+      });
+    });
+
+    function closeContactForm() {
+      if (contactLightbox) {
+        contactLightbox.classList.remove('active');
+      }
+    }
+
+    if (closeContact) {
+      closeContact.addEventListener('click', closeContactForm);
+    }
+
+    if (contactLightbox) {
+      contactLightbox.addEventListener('click', (e) => {
+        if (e.target === contactLightbox) {
+          closeContactForm();
+        }
+      });
+		}
+  </script>
+</body>
+</html>
